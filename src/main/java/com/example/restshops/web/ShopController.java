@@ -1,6 +1,6 @@
-package com.example.restshops.controllers;
+package com.example.restshops.web;
 
-import com.example.restshops.models.Shop;
+import com.example.restshops.repository.models.Shop;
 import com.example.restshops.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
-package com.example.restshops.repositories;
+package com.example.restshops.repository;
 
-import com.example.restshops.models.Shop;
+import com.example.restshops.repository.models.Shop;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

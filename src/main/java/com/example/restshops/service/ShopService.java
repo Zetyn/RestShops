@@ -1,6 +1,6 @@
 package com.example.restshops.service;
 
-import com.example.restshops.models.Shop;
+import com.example.restshops.repository.models.Shop;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

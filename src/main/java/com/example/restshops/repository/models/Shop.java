@@ -1,4 +1,4 @@
-package com.example.restshops.models;
+package com.example.restshops.repository.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

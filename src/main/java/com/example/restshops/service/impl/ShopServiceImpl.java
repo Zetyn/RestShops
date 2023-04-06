@@ -1,7 +1,7 @@
 package com.example.restshops.service.impl;
 
-import com.example.restshops.models.Shop;
-import com.example.restshops.repositories.ShopRepo;
+import com.example.restshops.repository.models.Shop;
+import com.example.restshops.repository.ShopRepo;
 import com.example.restshops.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
