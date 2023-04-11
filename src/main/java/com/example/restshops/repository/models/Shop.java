@@ -1,9 +1,6 @@
 package com.example.restshops.repository.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +18,6 @@ public class Shop {
     private String street;
     private int numberOfWorkers;
     private boolean site;
-
     public Shop() {
 
     }

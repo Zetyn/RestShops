@@ -29,14 +29,16 @@ public class ShopController {
     }
 
     @GetMapping("/shops/{id}")
-    public ResponseEntity<?> getShopById(@PathVariable("id") long id) {
-        return shopService.getById(id);
+    public ResponseEntity<?> getShopById(@PathVariable("id") Long id) {
+        if (id != null) {
+            return new ResponseEntity<>(shopService.getById(id),HttpStatus.FOUND);
+        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/shops/objMapper/{id}")
     public void getShopByIdWithObjMapp(@PathVariable("id") long id, HttpServletResponse response) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Optional<Shop> OptionalShop = shopService.getByIdObj(id);
+        Optional<Shop> OptionalShop = shopService.getById(id);
         OptionalShop.ifPresentOrElse(shop -> {
             ShopDTO shopDTO = ShopDTO.builder().title(shop.getTitle()).city(shop.getCity()).street(shop.getStreet()).site(shop.isSite()).id(shop.getId()).build();
             try {
@@ -57,7 +59,6 @@ public class ShopController {
     public void createShopWithObjMapp(HttpServletRequest request, HttpServletResponse response) throws IOException {
         BufferedReader reader = request.getReader();
         String shopJson = reader.lines().collect(Collectors.joining());
-        System.out.println("\n=========="+shopJson);
         ObjectMapper objectMapper = new ObjectMapper();
         Shop shop = objectMapper.readValue(shopJson, Shop.class);
         shopService.save(shop);
@@ -71,20 +72,28 @@ public class ShopController {
 
     @PostMapping("/createShop")
     public ResponseEntity<?> createShop(@RequestBody Shop shop) {
-        return shopService.save(shop);
+        if (shop != null) {
+            return new ResponseEntity<>(shopService.save(shop),HttpStatus.CREATED);
+        } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     //--------------Put----------------------------------
 
     @PutMapping("/updateShop")
     public ResponseEntity<?> updateShop(@RequestBody Shop shop) {
-        return shopService.update(shop);
+        if (shop != null) {
+            return new ResponseEntity<>(shopService.update(shop),HttpStatus.OK);
+        } else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     //--------------Delete----------------------------------
 
     @DeleteMapping("/deleteShop/{id}")
-    public ResponseEntity<?> deleteShop(@PathVariable("id") long id) {
-        return shopService.deleteShop(id);
+    public ResponseEntity<?> deleteShop(@PathVariable("id") Long id) {
+        if (id != null) {
+            shopService.deleteShop(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
 }
